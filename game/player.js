@@ -35,11 +35,17 @@ Player.prototype.accelerate = function (distance) {
 };
 
 Player.prototype.dead = function () {
-    this.graphic.position.z = this.graphic.position.z-0.1;
+
         //Nettoyage de la div container
-        $("#container").html("");
+
+        if (this.life ==0){
+            this.graphic.position.z = this.graphic.position.z-0.1;
+            $("#container").html("");
         jQuery('#'+this.name+' >.life').text("Tu es mort !");
         init();
+        }
+        else
+            this.life--;
 }
 
 Player.prototype.decelerate = function (distance) {
@@ -66,6 +72,7 @@ Player.prototype.turnLeft = function (angle) {
 };
 
 Player.prototype.move = function () {
+
     var moveTo = new THREE.Vector3(
         this.speed * Math.cos(this.direction) + this.graphic.position.x,
         this.speed * Math.sin(this.direction) + this.graphic.position.y,

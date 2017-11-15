@@ -36,6 +36,7 @@ function collisions()
 {
     bullet_collision();
     bullet_collision_enemy();
+    player_collision_enemy();
     player_collision();
     player_falling();
 }
@@ -72,6 +73,19 @@ function bullet_collision_enemy()
             i--;
         }
     }
+
+}
+function player_collision_enemy()
+{
+
+    if (player1.graphic.position.x < enemy1.graphic.position.x + 10 &&
+            player1.graphic.position.x + 10 >enemy1.graphic.position.x &&
+            player1.graphic.position.y < enemy1.graphic.position.y +10 &&
+            10 + player1.graphic.position.y > enemy1.graphic.position.y)
+        {
+
+        player1.dead() ;
+        }
 
 }
 
