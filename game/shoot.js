@@ -49,7 +49,6 @@ function bullet_collision()
             Math.abs(player1.bullets[i].position.y) >= HEIGHT / 2)
         {
             scene.remove(player1.bullets[i]);
-            scene.remove(enemy1);
             player1.bullets.splice(i, 1);
             i--;
         }
@@ -61,11 +60,14 @@ function bullet_collision_enemy()
 
     for (var i = 0; i < player1.bullets.length; i++)
     {
-        if (Math.abs(player1.bullets[i].position.x) == enemy1.graphic.position.x / 2 ||
-            Math.abs(player1.bullets[i].position.y) == enemy1.graphic.position.y / 2)
+        if (player1.bullets[i].position.x < enemy1.graphic.position.x + 10 &&
+                player1.bullets[i].position.x + 10 >enemy1.graphic.position.x &&
+                player1.bullets[i].position.y < enemy1.graphic.position.y +10 &&
+                10 + player1.bullets[i].position.y > enemy1.graphic.position.y)
         {
+
             scene.remove(player1.bullets[i]);
-            scene.remove(enemy1);
+            scene.remove(enemy1.graphic);
             player1.bullets.splice(i, 1);
             i--;
         }
